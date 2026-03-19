@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOR Logo Variations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F0EDE9;
+      color: #1C1C1C;
+      padding: 60px 24px;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #7A9E87;
+      margin-bottom: 8px;
+    }
+    .page-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #1C1C1C;
+      margin-bottom: 60px;
+    }
+
+    /* Grid of variations */
+    .variations {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto 80px;
+    }
+
+    .variation-block {
+      background: #fff;
+      border-radius: 20px;
+      padding: 48px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      border: 1px solid #E2DDD8;
+    }
+
+    .variation-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7A9E87;
+      border-bottom: 1px solid #E2DDD8;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 18px;
+    }
+
+    .logo-showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    /* ─── VARIATION A: Architectural Square Badge ─── */
+    .badge-square {
+      width: 110px;
+      height: 110px;
+    }
+
+    /* ─── VARIATION B: Circle Monogram ─── */
+    .badge-circle {
+      width: 110px;
+      height: 110px;
+    }
+
+    /* ─── VARIATION C: Horizontal Wordmark ─── */
+    .badge-horizontal {
+      width: 200px;
+      height: 64px;
+    }
+
+    /* Wordmark text under icon */
+    .wordmark-a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .wordmark-a .wm-main {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #1C1C1C;
+    }
+    .wordmark-a .wm-sub {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: #7A9E87;
+      text-transform: uppercase;
+    }
+
+    .wordmark-b {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .wordmark-b .wm-main {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #3D6B4F;
+    }
+    .wordmark-b .wm-sub {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: #7A9E87;
+      text-transform: uppercase;
+    }
+
+    /* Dark background preview row */
+    .dark-previews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .dark-block {
+      background: #1C1C1C;
+      border-radius: 20px;
+      padding: 48px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .dark-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7A9E87;
+      border-bottom: 1px solid #333;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 18px;
+    }
+
+    .wordmark-dark .wm-main {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #FFFFFF;
+    }
+    .wordmark-dark .wm-sub {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: #7A9E87;
+      text-transform: uppercase;
+    }
+    .wordmark-dark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .section-divider {
+      max-width: 1000px;
+      margin: 48px auto 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .section-divider hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid #C8C2BB;
+    }
+    .section-divider span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #999;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .variations, .dark-previews { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <p style="text-align:center;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7A9E87;margin-bottom:8px;">MOR Consulting</p>
+  <h2 class="page-title">Logo Variations</h2>
+
+  <!-- ── LIGHT BACKGROUND PREVIEWS ─────────── -->
+  <div class="variations">
+
+    <!-- VARIATION A: Architectural Square (like reference image) -->
+    <div class="variation-block">
+      <div class="variation-label">Variation A — Architectural Badge</div>
+      <div class="logo-showcase">
+        <svg class="badge-square" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Green square background -->
+          <rect width="100" height="100" rx="10" fill="#3D6B4F"/>
+          <!-- M shape: outer silhouette -->
+          <path d="M14,82 L14,22 L50,62 L86,22 L86,82 Z" fill="white"/>
+          <!-- Left inner column cutout -->
+          <rect x="22" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+          <!-- Right inner column cutout -->
+          <rect x="62" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+          <!-- Center valley cutout -->
+          <path d="M38,52 L50,38 L62,52 Z" fill="#3D6B4F"/>
+        </svg>
+
+        <div class="wordmark-a">
+          <span class="wm-main">MOR CONSULTING</span>
+          <span class="wm-sub">Marketing · Optimization · Revenue</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIATION B: Circle Monogram -->
+    <div class="variation-block">
+      <div class="variation-label">Variation B — Circle Monogram</div>
+      <div class="logo-showcase">
+        <svg class="badge-circle" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Green circle -->
+          <circle cx="50" cy="50" r="50" fill="#3D6B4F"/>
+          <!-- Clean M: two legs + center arch -->
+          <path d="M18,74 L18,30 L50,58 L82,30 L82,74 L72,74 L72,44 L50,66 L28,44 L28,74 Z" fill="white"/>
+        </svg>
+
+        <div class="wordmark-b">
+          <span class="wm-main">MOR CONSULTING</span>
+          <span class="wm-sub">Marketing · Optimization · Revenue</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VARIATION C: Horizontal Lockup -->
+    <div class="variation-block">
+      <div class="variation-label">Variation C — Horizontal Wordmark</div>
+      <div class="logo-showcase">
+        <!-- Horizontal: small square mark + text side by side -->
+        <div style="display:flex;align-items:center;gap:14px;">
+          <svg width="52" height="52" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" rx="10" fill="#3D6B4F"/>
+            <path d="M14,82 L14,22 L50,62 L86,22 L86,82 Z" fill="white"/>
+            <rect x="22" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+            <rect x="62" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+            <path d="M38,52 L50,38 L62,52 Z" fill="#3D6B4F"/>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <span style="font-size:1.25rem;font-weight:800;letter-spacing:0.04em;color:#1C1C1C;line-height:1;">MOR CONSULTING</span>
+            <span style="font-size:0.58rem;font-weight:500;letter-spacing:0.18em;color:#7A9E87;text-transform:uppercase;">Marketing · Optimization · Revenue</span>
+          </div>
+        </div>
+
+        <!-- Also show the standalone mark smaller -->
+        <div style="margin-top:16px;display:flex;align-items:center;gap:10px;">
+          <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="10" fill="#3D6B4F"/>
+            <path d="M14,82 L14,22 L50,62 L86,22 L86,82 Z" fill="white"/>
+            <rect x="22" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+            <rect x="62" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+            <path d="M38,52 L50,38 L62,52 Z" fill="#3D6B4F"/>
+          </svg>
+          <span style="font-size:.85rem;font-weight:700;letter-spacing:.04em;color:#1C1C1C;">MOR</span>
+          <span style="font-size:.55rem;font-weight:500;letter-spacing:.15em;color:#7A9E87;text-transform:uppercase;">Consulting</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── DARK BACKGROUND PREVIEWS ───────────── -->
+  <div class="section-divider">
+    <hr /><span>Dark Background Preview</span><hr />
+  </div>
+
+  <div class="dark-previews">
+
+    <div class="dark-block">
+      <div class="dark-label">Variation A</div>
+      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+        <rect width="100" height="100" rx="10" fill="#3D6B4F"/>
+        <path d="M14,82 L14,22 L50,62 L86,22 L86,82 Z" fill="white"/>
+        <rect x="22" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+        <rect x="62" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+        <path d="M38,52 L50,38 L62,52 Z" fill="#3D6B4F"/>
+      </svg>
+      <div class="wordmark-dark">
+        <span class="wm-main">MOR CONSULTING</span>
+        <span class="wm-sub">Marketing · Optimization · Revenue</span>
+      </div>
+    </div>
+
+    <div class="dark-block">
+      <div class="dark-label">Variation B</div>
+      <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="50" fill="#3D6B4F"/>
+        <path d="M18,74 L18,30 L50,58 L82,30 L82,74 L72,74 L72,44 L50,66 L28,44 L28,74 Z" fill="white"/>
+      </svg>
+      <div class="wordmark-dark">
+        <span class="wm-main">MOR CONSULTING</span>
+        <span class="wm-sub">Marketing · Optimization · Revenue</span>
+      </div>
+    </div>
+
+    <div class="dark-block">
+      <div class="dark-label">Variation C</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <svg width="52" height="52" viewBox="0 0 100 100" fill="none">
+          <rect width="100" height="100" rx="10" fill="#3D6B4F"/>
+          <path d="M14,82 L14,22 L50,62 L86,22 L86,82 Z" fill="white"/>
+          <rect x="22" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+          <rect x="62" y="52" width="16" height="30" fill="#3D6B4F" rx="1"/>
+          <path d="M38,52 L50,38 L62,52 Z" fill="#3D6B4F"/>
+        </svg>
+        <div style="display:flex;flex-direction:column;gap:3px;">
+          <span style="font-size:1.15rem;font-weight:800;letter-spacing:0.04em;color:#FFFFFF;line-height:1;">MOR CONSULTING</span>
+          <span style="font-size:0.56rem;font-weight:500;letter-spacing:0.18em;color:#7A9E87;text-transform:uppercase;">Marketing · Optimization · Revenue</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

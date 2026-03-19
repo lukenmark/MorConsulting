@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mor Consulting — AI Voice Technology for Small Business</title>
+  <meta name="description" content="Your phone just became your best salesperson. Get a free live AI voice demo call in seconds — no strings attached." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F5F2EE;
+      --green:    #3D6B4F;
+      --green-lt: #EEF3F0;
+      --sage:     #7A9E87;
+      --text:     #1C1C1C;
+      --muted:    #6B7280;
+      --white:    #FFFFFF;
+      --border:   #E2DDD8;
+      --radius:   16px;
+      --shadow:   0 2px 16px rgba(61,107,79,0.10);
+      --shadow-lg:0 8px 40px rgba(61,107,79,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── UTILITY ─────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245,242,238,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-tagline {
+      font-size: 0.58rem;
+      font-weight: 500;
+      color: var(--sage);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border: 1.5px solid var(--green);
+      border-radius: 100px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--green);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      padding: 96px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Photo slideshow background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+    }
+
+    .hero-bg-slide.active { opacity: 1; }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    /* All hero content sits above the overlay */
+    .hero > .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .badge svg {
+      width: 14px;
+      height: 14px;
+      fill: #F59E0B;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 780px;
+      margin: 0 auto 20px;
+    }
+
+    .hero h1 .line-1 { color: #FFFFFF; display: block; }
+    .hero h1 .line-2 { color: #7FC99A; display: block; }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 400;
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── WAVEFORM ────────────────────────────────── */
+    .waveform-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      height: 72px;
+      margin-bottom: 52px;
+    }
+
+    .wave-bar {
+      width: 5px;
+      border-radius: 100px;
+      background: #FFFFFF;
+      animation: wavePulse 1.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .wave-bar:nth-child(1) { height: 20px; animation-delay: 0s;    }
+    .wave-bar:nth-child(2) { height: 42px; animation-delay: 0.18s; }
+    .wave-bar:nth-child(3) { height: 58px; animation-delay: 0.06s; }
+    .wave-bar:nth-child(4) { height: 68px; animation-delay: 0.24s; }
+    .wave-bar:nth-child(5) { height: 52px; animation-delay: 0.12s; }
+    .wave-bar:nth-child(6) { height: 36px; animation-delay: 0.30s; }
+    .wave-bar:nth-child(7) { height: 18px; animation-delay: 0.08s; }
+
+    @keyframes wavePulse {
+      0%, 100% { transform: scaleY(0.35); opacity: 0.55; }
+      50%       { transform: scaleY(1);    opacity: 1;    }
+    }
+
+    /* ── FORM ────────────────────────────────────── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 40px 36px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .ghl-form button, .hl-form button, iframe { border: none; width: 100%; }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px 28px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      box-shadow: 0 4px 18px rgba(61,107,79,0.30);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 6px;
+    }
+
+    .btn-primary:hover {
+      background: #2f5540;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(61,107,79,0.35);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .form-trust {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-trust svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ── HOW IT WORKS ────────────────────────────── */
+    .how-section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 56px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px 32px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .step-num {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.06em;
+    }
+
+    .step-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--green-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .step-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .step-card .step-time {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-lt);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* ── WHO IT'S FOR ────────────────────────────── */
+    .who-section {
+      background: var(--green-lt);
+      padding: 100px 0;
+    }
+
+    .who-subtitle {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--muted);
+      text-align: center;
+      max-width: 560px;
+      margin: -32px auto 56px;
+      line-height: 1.6;
+    }
+
+    .biz-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .biz-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 16px 22px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .biz-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .biz-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--green-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .biz-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .biz-card span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 3px solid var(--green);
+      background: var(--white);
+      padding: 40px 24px 36px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 72px 0 64px; }
+
+      .form-card { padding: 28px 22px 24px; }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .biz-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 400px;
+      }
+
+      .how-section { padding: 72px 0; }
+      .who-section { padding: 72px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { letter-spacing: -0.025em; }
+      .waveform-wrap { gap: 5px; }
+      .wave-bar { width: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────── -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="logo" aria-label="Mor Consulting">
+          <!-- Circle monogram M mark -->
+          <svg class="logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="50" fill="#3D6B4F"/>
+            <path d="M18,74 L18,30 L50,58 L82,30 L82,74 L72,74 L72,44 L50,66 L28,44 L28,74 Z" fill="white"/>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-name">MOR</span>
+            <span class="logo-tagline">Marketing. Optimization. Revenue.</span>
+          </div>
+        </a>
+        <a href="#demo" class="btn-outline">Book a Call</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────── -->
+  <section class="hero" id="hero">
+
+    <!-- Rotating photo background -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg-slide active" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600')"></div>
+      <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1600')"></div>
+      <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600')"></div>
+      <div class="hero-bg-slide" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600')"></div>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container">
+
+      <div class="badge fade-up visible">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        AI Voice Technology
+      </div>
+
+      <h1 class="fade-up visible" style="transition-delay:0.08s">
+        <span class="line-1">Never Miss a Call.</span>
+        <span class="line-2">Never Lose a Lead.</span>
+      </h1>
+
+      <p class="hero-sub fade-up visible" style="transition-delay:0.16s">
+        Our AI answers your phones 24/7, handles questions, and books appointments — while you focus on running your business.
+      </p>
+
+      <!-- Animated voice waveform -->
+      <div class="waveform-wrap fade-up visible" style="transition-delay:0.22s" aria-label="Voice waveform animation" role="img">
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+      </div>
+
+      <!-- Form card -->
+      <div class="form-card fade-up visible" style="transition-delay:0.30s" id="demo">
+
+        <!-- GHL Form Embed -->
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/jGrxMvCh5QoVhZN1B1M9"
+          style="width:100%;height:339px;border:none;border-radius:3px"
+          id="inline-jGrxMvCh5QoVhZN1B1M9"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="AI Demo Form"
+          data-height="339"
+          data-layout-iframe-id="inline-jGrxMvCh5QoVhZN1B1M9"
+          data-form-id="jGrxMvCh5QoVhZN1B1M9"
+          title="AI Demo Form"
+        ></iframe>
+        <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+        <button id="custom-submit" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.27 16.27z"/>
+          </svg>
+          Get My Free Demo Call
+        </button>
+
+        <p class="form-trust">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          We'll call you within 30 seconds. No spam, ever.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ───────────────────────────────── -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <p class="section-label fade-up">Simple Process</p>
+      <h2 class="section-title fade-up">Here's What Happens</h2>
+
+      <div class="steps-grid">
+
+        <div class="step-card fade-up">
+          <span class="step-num">01</span>
+          <div class="step-icon">
+            <!-- Phone icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.27 16.27z"/>
+            </svg>
+          </div>
+          <h3>You Enter Your Info</h3>
+          <p>Just your name and phone number — that's it. We handle everything else automatically.</p>
+          <span class="step-time">Takes 10 seconds</span>
+        </div>
+
+        <div class="step-card fade-up" style="transition-delay:0.12s">
+          <span class="step-num">02</span>
+          <div class="step-icon">
+            <!-- AI/robot icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="10" rx="2"/>
+              <circle cx="12" cy="5" r="2"/>
+              <line x1="12" y1="7" x2="12" y2="11"/>
+              <line x1="8" y1="15" x2="8" y2="17"/>
+              <line x1="12" y1="15" x2="12" y2="17"/>
+              <line x1="16" y1="15" x2="16" y2="17"/>
+            </svg>
+          </div>
+          <h3>AI Calls You Instantly</h3>
+          <p>Our AI voice agent dials your number and demonstrates exactly what your customers would hear.</p>
+          <span class="step-time">Within 30 seconds</span>
+        </div>
+
+        <div class="step-card fade-up" style="transition-delay:0.24s">
+          <span class="step-num">03</span>
+          <div class="step-icon">
+            <!-- Calendar icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="8" y1="14" x2="8" y2="14"/>
+              <line x1="12" y1="14" x2="12" y2="14"/>
+              <line x1="16" y1="14" x2="16" y2="14"/>
+            </svg>
+          </div>
+          <h3>Book Your Discovery Call</h3>
+          <p>If it's a fit, schedule 15 minutes with our team and get your own AI assistant set up.</p>
+          <span class="step-time">If it's a fit, get started</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO IT'S FOR ───────────────────────────────── -->
+  <section class="who-section" id="who">
+    <div class="container">
+      <p class="section-label fade-up">Who We Serve</p>
+      <h2 class="section-title fade-up">Built for Small Business Owners</h2>
+      <p class="who-subtitle fade-up">
+        If you're losing leads to missed calls, slow follow-up, or after-hours inquiries — this is for you.
+      </p>
+
+      <div class="biz-grid">
+
+        <div class="biz-card fade-up">
+          <div class="biz-icon">
+            <!-- Auto shop / wrench icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <span>Auto Shops</span>
+        </div>
+
+        <div class="biz-card fade-up" style="transition-delay:0.1s">
+          <div class="biz-icon">
+            <!-- Scissors/salon icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="6" cy="6" r="3"/>
+              <circle cx="6" cy="18" r="3"/>
+              <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+              <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+              <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <span>Salons</span>
+        </div>
+
+        <div class="biz-card fade-up" style="transition-delay:0.2s">
+          <div class="biz-icon">
+            <!-- Home/real estate icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <span>Real Estate</span>
+        </div>
+
+        <div class="biz-card fade-up" style="transition-delay:0.3s">
+          <div class="biz-icon">
+            <!-- Restaurant/utensils icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+              <line x1="7" y1="2" x2="7" y2="11"/>
+              <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h1v6a1 1 0 0 0 2 0V15z"/>
+            </svg>
+          </div>
+          <span>Restaurants</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo" aria-label="Mor Consulting">
+      <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="50" r="50" fill="#3D6B4F"/>
+        <path d="M18,74 L18,30 L50,58 L82,30 L82,74 L72,74 L72,44 L50,66 L28,44 L28,74 Z" fill="white"/>
+      </svg>
+      <span style="font-size:1rem;font-weight:800;color:var(--text);letter-spacing:-0.01em;">MOR</span>
+    </div>
+    <p class="footer-copy">© 2026 Mor Consulting. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ── Scroll-triggered fade-up animations ───────────
+    const fadeEls = document.querySelectorAll('.fade-up:not(.visible)');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      fadeEls.forEach(el => observer.observe(el));
+    } else {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // ── Smooth scroll for "Book a Call" nav link ──────
+    document.querySelector('nav .btn-outline').addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('demo');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          const nameInput = document.getElementById('field-name');
+          if (nameInput) nameInput.focus();
+        }, 600);
+      }
+    });
+
+    // ── Custom submit button → GHL form trigger ───────
+    document.getElementById('custom-submit').addEventListener('click', function() {
+      this.textContent = 'See How It Sounds 📞';
+      this.style.background = '#2A4A2E';
+      const iframe = document.getElementById('inline-jGrxMvCh5QoVhZN1B1M9');
+      try {
+        iframe.contentWindow.document.querySelector('form').submit();
+      } catch(e) {
+        iframe.contentWindow.postMessage({ type: 'submit' }, '*');
+      }
+    });
+
+    // ── Hero background crossfade slideshow ───────────
+    (function() {
+      const slides = document.querySelectorAll('.hero-bg-slide');
+      let current = 0;
+      setInterval(function() {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 4000);
+    })();
+  </script>
+
+</body>
+</html>
